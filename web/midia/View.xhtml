@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMidiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMidiaLabel_idMidia}"/>
+                    <h:outputText value="#{midiaController.selected.idMidia}" title="#{bundle.ViewMidiaTitle_idMidia}"/>
+                    <h:outputText value="#{bundle.ViewMidiaLabel_duracao}"/>
+                    <h:outputText value="#{midiaController.selected.duracao}" title="#{bundle.ViewMidiaTitle_duracao}"/>
+                    <h:outputText value="#{bundle.ViewMidiaLabel_atores}"/>
+                    <h:outputText value="#{midiaController.selected.atores}" title="#{bundle.ViewMidiaTitle_atores}"/>
+                    <h:outputText value="#{bundle.ViewMidiaLabel_diretor}"/>
+                    <h:outputText value="#{midiaController.selected.diretor}" title="#{bundle.ViewMidiaTitle_diretor}"/>
+                    <h:outputText value="#{bundle.ViewMidiaLabel_idProd}"/>
+                    <h:outputText value="#{midiaController.selected.idProd}" title="#{bundle.ViewMidiaTitle_idProd}"/>
+                    <h:outputText value="#{bundle.ViewMidiaLabel_idAcervo}"/>
+                    <h:outputText value="#{midiaController.selected.idAcervo}" title="#{bundle.ViewMidiaTitle_idAcervo}"/>
+                </h:panelGrid>
+                <br />
+                <p:commandButton ajax="false" action="#{midiaController.destroyAndView}" value="#{bundle.ViewMidiaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMidiaEditLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{midiaController.prepareCreate}" value="#{bundle.ViewMidiaCreateLink}" />
+                <br />
+                <p:commandButton ajax="false" action="#{midiaController.prepareList}" value="#{bundle.ViewMidiaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMidiaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

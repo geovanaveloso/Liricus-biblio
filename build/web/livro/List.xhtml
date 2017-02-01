@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLivroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>  
+
+                    <p:growl id="messages" />  
+
+                    <p:toolbar>  
+                        <p:toolbarGroup align="left">  
+                            <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{livroController.prepareCreate}"/>  
+
+                            <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{livroController.prepareEdit}"/> 
+
+                            <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{livroController.destroy}"/>
+
+                            <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{livroController.prepareView}"/>  
+
+                        </p:toolbarGroup>  
+
+                        <p:toolbarGroup align="right">  
+                            <p:menuButton value="Ordenar Por:">  
+                                <p:menuitem value="Id"  />  
+                                <p:menuitem value="Nome"  
+                                            />  
+                                <p:menuitem value="Data"  
+                                            />  
+                            </p:menuButton>  
+                        </p:toolbarGroup>  
+
+                    </p:toolbar>  
+                </h:form>
+                <h:outputText escape="false" value="#{bundle.ListLivroEmpty}" rendered="#{livroController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{livroController.items.rowCount > 0}">
+                    <h:outputText value="#{livroController.pagination.pageFirstItem + 1}..#{livroController.pagination.pageLastItem + 1}/#{livroController.pagination.itemsCount}"/>&nbsp;
+                    <p:commandButton ajax="false" action="#{livroController.previous}" value="#{bundle.Previous} #{livroController.pagination.pageSize}" rendered="#{livroController.pagination.hasPreviousPage}"/>&nbsp;
+                    <p:commandButton ajax="false" action="#{livroController.next}" value="#{bundle.Next} #{livroController.pagination.pageSize}" rendered="#{livroController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{livroController.items}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_volume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_edicao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.edicao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_paginas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paginas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_idLivro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLivro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_idEditora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEditora}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_idAutor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAutor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLivroTitle_idAcervo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAcervo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <p:commandButton ajax="false" action="#{livroController.prepareView}" value="#{bundle.ListLivroViewLink}"/>
+                            <h:outputText value=" "/>
+                            <p:commandButton ajax="false" action="#{livroController.prepareEdit}" value="#{bundle.ListLivroEditLink}"/>
+                            <h:outputText value=" "/>
+                            <p:commandButton ajax="false" action="#{livroController.destroy}" value="#{bundle.ListLivroDestroyLink}"/>
+                        </h:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <p:commandButton ajax="false" action="#{livroController.prepareCreate}" value="#{bundle.ListLivroCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLivroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmprestimoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_idEmprestimo}" for="idEmprestimo" />
+                    <p:inputText id="idEmprestimo" value="#{emprestimoController.selected.idEmprestimo}" title="#{bundle.EditEmprestimoTitle_idEmprestimo}" required="true" requiredMessage="#{bundle.EditEmprestimoRequiredMessage_idEmprestimo}"/>
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_renovacao}" for="renovacao" />
+                    <p:inputText id="renovacao" value="#{emprestimoController.selected.renovacao}" title="#{bundle.EditEmprestimoTitle_renovacao}" />
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_dataEmprestimo}" for="dataEmprestimo" />
+                    <p:inputText id="dataEmprestimo" value="#{emprestimoController.selected.dataEmprestimo}" title="#{bundle.EditEmprestimoTitle_dataEmprestimo}" />
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_dataDevolucao}" for="dataDevolucao" />
+                    <p:inputText id="dataDevolucao" value="#{emprestimoController.selected.dataDevolucao}" title="#{bundle.EditEmprestimoTitle_dataDevolucao}" />
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_devolucaoPrevista}" for="devolucaoPrevista" />
+                    <p:inputText id="devolucaoPrevista" value="#{emprestimoController.selected.devolucaoPrevista}" title="#{bundle.EditEmprestimoTitle_devolucaoPrevista}" />
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_idPessoa}" for="idPessoa" />
+                    <p:selectOneMenu id="idPessoa" value="#{emprestimoController.selected.idPessoa}">
+                        <f:selectItems value="#{pessoaController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditEmprestimoLabel_idAcervo}" for="idAcervo" />
+                    <p:selectOneMenu id="idAcervo" value="#{emprestimoController.selected.idAcervo}">
+                        <f:selectItems value="#{acervoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{emprestimoController.update}" value="#{bundle.EditEmprestimoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmprestimoViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{emprestimoController.prepareList}" value="#{bundle.EditEmprestimoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmprestimoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

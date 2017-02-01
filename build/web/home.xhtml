@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>LiricusBiblio</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+           
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
+                    <img src="../resources/img/topo.png" alt="logo" align="left" height="88" /> 
+
+                    <h:form>  
+                        <h:panelGrid columns="2" cellpadding="2">  
+                            <h:outputLabel for="username" value="Usuário:" />  
+                            <p:inputText value="#{loginBean.username}"   
+                                         id="username" required="true" label="username" />  
+
+                            <h:outputText value="Senha: " />  
+                            <p:password value="#{loginBean.password}" id="password" required="true" label="password"/>  
+
+                            <f:facet name="footer">  
+                                <p:commandButton id="loginButton" value="Login" update=":growl"   
+                                                 actionListener="#{loginBean.login}"   
+                                                 oncomplete="handleLoginRequest(xhr, status, args)"/>  
+
+                                <p:commandButton id="novoCadastroUsuario" value="Cadastrar" update=":growl"   
+                                                 actionListener="#{loginBean.login}"   
+                                                 oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                            </f:facet>  
+                        </h:panelGrid>  
+                    </h:form>
+
+
+                    <p:growl id="growl" showDetail="true" life="3000" />  
+
+                    <script type="text/javascript">  
+                        function handleLoginRequest(xhr, status, args) {  
+                            if(args.validationFailed || !args.loggedIn) {  
+                                jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                            } else {  
+                                dlg.hide();  
+                                jQuery('#loginLink').fadeOut();  
+                            }  
+                        }  
+                    </script> 
+                </p:layoutUnit>
+ <div align="center">
+                <p:layoutUnit position="west" size="300" header="Opções" collapsible="true">
+
+                    <p:menu >
+                        <p:menuitem value="Empréstimos Recentes" url="http://www.primefaces.org/documentation.html" />
+                        <p:menuitem value="Notícias da Igreja" url="http://forum.primefaces.org/" />
+                    </p:menu>
+                </p:layoutUnit>
+</div>
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <p:panel header="Pesquisa Rápida">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Autor: " for="nome" />
+                                <p:inputText id="autor" value="#{bundle.ListAutorTitle_nome}" title="Autor" />
+                                <h:outputLabel value="Categoria: " for="sexo" />
+                                <p:inputText id="categoria" value="#{pessoaController.selected.sexo}" title="Categoria" />
+                                <h:outputLabel value="Tipo de Acervo: " for="acervo" />
+                                <p:selectOneMenu value="#{buttonBean.number}">   
+                                    <f:selectItem itemLabel="Livro" itemValue="1" />  
+                                    <f:selectItem itemLabel="Mídia" itemValue="2" />  
+                                    <f:selectItem itemLabel="Periódico" itemValue="3" />  
+                                    <f:selectItem itemLabel="Trabalho Acadêmico" itemValue="4" />  
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+                        </p:panel>
+                        <h:form>  
+                            <p:growl id="messages" />  
+                            <p:toolbar>  
+                                <p:toolbarGroup align="left">  
+                                    <p:commandButton ajax="false" value="Pesquisar" icon="ui-icon-circle-zoomin" action="#{pessoaController.prepareCreate}"/>  
+
+                                    <p:commandButton ajax="false" value="Imprimir Pesquisa" icon="ui-icon-print" action="#{pessoaController.destroy}"/>
+
+                                    <p:commandButton ajax="false" value="Salvar Pesquisa" icon="ui-icon-disk" action="#{pessoaController.prepareView}"/>  
+
+                                </p:toolbarGroup>  
+
+                            </p:toolbar> 
+                        </h:form>
+                        <p:dataGrid>
+                            
+                        </p:dataGrid>
+                         <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+                                    <h:outputText value="VOCÊ PERDEU! MUHAHAHAHA" style="color:#FFCC00;font-size:36px;" />  
+                                </p:notificationBar> 
+                                <p:commandButton value="Salvar Pesquisa" onclick="bar.show()" type="button" />  
+                                <p:commandButton value="Excluir Pesquisa" onclick="bar.hide()" type="button" /> 
+                            
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProdutoraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProdutoraLabel_idProdutora}" for="idProdutora" />
+                    <p:inputText id="idProdutora" value="#{produtoraController.selected.idProdutora}" title="#{bundle.EditProdutoraTitle_idProdutora}" required="true" requiredMessage="#{bundle.EditProdutoraRequiredMessage_idProdutora}"/>
+                    <h:outputLabel value="#{bundle.EditProdutoraLabel_nome}" for="nome" />
+                    <p:inputText id="nome" value="#{produtoraController.selected.nome}" title="#{bundle.EditProdutoraTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditProdutoraLabel_idContato}" for="idContato" />
+                    <p:selectOneMenu id="idContato" value="#{produtoraController.selected.idContato}">
+                        <f:selectItems value="#{contatoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{produtoraController.update}" value="#{bundle.EditProdutoraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProdutoraViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{produtoraController.prepareList}" value="#{bundle.EditProdutoraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProdutoraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

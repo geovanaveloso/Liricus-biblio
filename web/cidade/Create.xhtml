@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCidadeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{livroController.prepareCreate}"/>  
+
+                        <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{livroController.prepareEdit}"/> 
+
+                        <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{livroController.destroy}"/>
+
+                        <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{livroController.prepareView}"/>  
+
+                        <p:commandButton ajax="false" icon="icon-info-2" action="#{cidadeController.prepareList}" value="Todos Registros" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form>
+            <h:form>
+                <p:panel header="Cadastrar Nova Cidade">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateCidadeLabel_uf}" for="uf" />
+                        <p:inputText id="uf" value="#{cidadeController.selected.uf}" title="#{bundle.CreateCidadeTitle_uf}" />
+                        <h:outputLabel value="#{bundle.CreateCidadeLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{cidadeController.selected.nome}" title="#{bundle.CreateCidadeTitle_nome}" />
+                        <h:outputLabel value="#{bundle.CreateCidadeLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{cidadeController.selected.estado}">
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{cidadeController.create}" value="#{bundle.CreateCidadeSaveLink}" />
+                    <br />
+                    <br />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

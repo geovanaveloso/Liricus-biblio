@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPeriodicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>  
+
+                    <p:growl id="messages" />  
+
+                    <p:toolbar>  
+                        <p:toolbarGroup align="left">  
+                            <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{periodicoController.prepareCreate}"/>  
+
+                            <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{periodicoController.prepareEdit}"/> 
+
+                            <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{periodicoController.destroy}"/>
+
+                            <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{periodicoController.prepareView}"/>  
+
+                        </p:toolbarGroup>  
+
+                        <p:toolbarGroup align="right">  
+                            <p:menuButton value="Ordenar Por:">  
+                                <p:menuitem value="Id"  />  
+                                <p:menuitem value="Nome"  
+                                            />  
+                                <p:menuitem value="Data"  
+                                            />  
+                            </p:menuButton>  
+                        </p:toolbarGroup>  
+
+                    </p:toolbar>  
+                </h:form>
+                <h:outputText escape="false" value="#{bundle.ListPeriodicoEmpty}" rendered="#{periodicoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{periodicoController.items.rowCount > 0}">
+                    <h:outputText value="#{periodicoController.pagination.pageFirstItem + 1}..#{periodicoController.pagination.pageLastItem + 1}/#{periodicoController.pagination.itemsCount}"/>&nbsp;
+                    <p:commandButton ajax="false" action="#{periodicoController.previous}" value="#{bundle.Previous} #{periodicoController.pagination.pageSize}" rendered="#{periodicoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <p:commandButton ajax="false" action="#{periodicoController.next}" value="#{bundle.Next} #{periodicoController.pagination.pageSize}" rendered="#{periodicoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{periodicoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_idPeriodico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_folhas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.folhas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_periodicidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.periodicidade}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_dataPublicacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataPublicacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_edicao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.edicao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_idEditora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEditora}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodicoTitle_idAcervo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAcervo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <p:commandButton ajax="false" action="#{periodicoController.prepareView}" value="#{bundle.ListPeriodicoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <p:commandButton ajax="false" action="#{periodicoController.prepareEdit}" value="#{bundle.ListPeriodicoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <p:commandButton ajax="false" action="#{periodicoController.destroy}" value="#{bundle.ListPeriodicoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <p:commandButton ajax="false" action="#{periodicoController.prepareCreate}" value="#{bundle.ListPeriodicoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPeriodicoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

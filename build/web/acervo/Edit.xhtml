@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAcervoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_idAcervo}" for="idAcervo" />
+                    <p:inputText id="idAcervo" value="#{acervoController.selected.idAcervo}" title="#{bundle.EditAcervoTitle_idAcervo}" required="true" requiredMessage="#{bundle.EditAcervoRequiredMessage_idAcervo}"/>
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_genero}" for="genero" />
+                    <p:inputText id="genero" value="#{acervoController.selected.genero}" title="#{bundle.EditAcervoTitle_genero}" />
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_situacao}" for="situacao" />
+                    <p:inputText id="situacao" value="#{acervoController.selected.situacao}" title="#{bundle.EditAcervoTitle_situacao}" />
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_titulo}" for="titulo" />
+                    <p:inputText id="titulo" value="#{acervoController.selected.titulo}" title="#{bundle.EditAcervoTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_resumo}" for="resumo" />
+                    <p:inputText id="resumo" value="#{acervoController.selected.resumo}" title="#{bundle.EditAcervoTitle_resumo}" />
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_tipo}" for="tipo" />
+                    <p:inputText id="tipo" value="#{acervoController.selected.tipo}" title="#{bundle.EditAcervoTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.EditAcervoLabel_ano}" for="ano" />
+                    <p:inputText id="ano" value="#{acervoController.selected.ano}" title="#{bundle.EditAcervoTitle_ano}" />
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{acervoController.update}" value="#{bundle.EditAcervoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAcervoViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{acervoController.prepareList}" value="#{bundle.EditAcervoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAcervoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

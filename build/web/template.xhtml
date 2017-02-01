@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Liricus Biblio</ui:insert></title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar autoDisplay="false">
+                <p:submenu label="Pesquisar" icon="ui-icon-circle-zoomin">  
+                    <p:menuitem value="Por Conteúdo" url="/GPConteudo.xhtml" />
+                    <p:menuitem value="Nome de Autor" url="/GPAutor.xhtml" />
+                    <p:menuitem value="Tese e Dissertações" url="/GPTeseD.xhtml" />
+                </p:submenu>  
+
+                <p:submenu label="Acervo" icon="ui-icon-folder-collapsed">  
+                    <p:menuitem  value="Livro" outcome="/livro/List" icon="ui-icon-circle-plus" />  
+                    <p:menuitem value="Mídia"  outcome="/midia/List" icon="ui-icon-circle-plus" />  
+                    <p:menuitem value="Periódicos" url="#" icon="ui-icon-circle-plus" />  
+                    <p:menuitem value="Trabalhos Acadêmicos" url="#" icon="ui-icon-circle-plus" />  
+                </p:submenu>  
+                
+                <p:submenu label="Usuário" icon="ui-icon-person">  
+                    <p:submenu  label="Novo">  
+                        <p:menuitem value="Usuário" actionListener="#{pessoaController.prepareList()}"   icon="ui-icon-person"/>  
+                        <p:menuitem value="Atendente" outcome="/pessoa/List" icon="ui-icon-person" />  
+                        <p:menuitem value="Administrador" outcome="/pessoa/List" icon="ui-icon-person" />  
+                    </p:submenu>  
+                </p:submenu>
+
+                <p:submenu label="Empréstimo" icon="ui-icon-cart">  
+                    <p:menuitem value="Emprestar" outcome="/emprestimo/Create" icon="ui-icon-cart"/>  
+                    <p:menuitem value="Renovar" outcome="/emprestimo/List"  icon="ui-icon-arrowrefresh-1-n" />  
+                    <p:menuitem value="Reservar" outcome="/reserva/List" icon="ui-icon-flag" />  
+                </p:submenu>  
+                
+                <p:submenu label="Outros" icon="ui-icon-folder-collapsed">  
+                    <p:menuitem ajax="false" value="Autor" outcome="/autor/List" icon="ui-icon-lightbulb" />  
+                    <p:menuitem value="Editora" outcome="/editora/List" icon="ui-icon-bookmark   " />  
+                    <p:menuitem value="Produtora" outcome="/produtora/List" icon="ui-icon-video" />  
+                    <p:menuitem value="Instituição Acadêmica" outcome="/instituicaoacademica/List" icon="ui-icon-home" />  
+                </p:submenu> 
+                <p:submenu label="Ajuda" icon="ui-icon-lightbulb">  
+                    <p:menuitem ajax="false" value="Guia do Sistema" target="_blank" icon="ui-icon-link" outcome ="../resources/ajuda/ajuda.pdf" />  
+                </p:submenu> 
+            </p:menubar> 
+        </h:form>
+
+        <p:panel>
+            <h:form>    
+                <img src="../resources/img/topo.png" alt="logo" />
+                <p:toolbarGroup align="right">  
+                    <p:menuButton value="Opções" >  
+                        <p:menuitem value="Sair" url="http://www.primefaces.org" icon="ui-icon-power" />  
+                        <p:menuitem value="Visualizar Perfil" icon="ui-icon-info" 
+                                    url="http://www.primefaces.org/showcase" />  
+                        <p:menuitem value="Alterar Senha"  icon="ui-icon-wrench"
+                                    url="http://www.primefaces.org/showcase/touch" />  
+                    </p:menuButton>  
+                </p:toolbarGroup>  
+
+            </h:form>
+        </p:panel>
+
+        <!-- <h1>
+             <ui:insert name="title">Default Title</ui:insert>
+         </h1>-->
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+    </h:body>
+
+</html>

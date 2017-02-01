@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTrabalhoacademicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{trabalhoacademicoController.prepareCreate}"/>  
+
+                        <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{trabalhoacademicoController.prepareEdit}"/> 
+
+                        <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{trabalhoacademicoController.destroy}"/>
+
+                        <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{trabalhoacademicoController.prepareView}"/>  
+
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_idTrab}" for="idTrab" />
+                    <p:inputText id="idTrab" value="#{trabalhoacademicoController.selected.idTrab}" title="#{bundle.CreateTrabalhoacademicoTitle_idTrab}" required="true" requiredMessage="#{bundle.CreateTrabalhoacademicoRequiredMessage_idTrab}"/>
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_orientador}" for="orientador" />
+                    <p:inputText id="orientador" value="#{trabalhoacademicoController.selected.orientador}" title="#{bundle.CreateTrabalhoacademicoTitle_orientador}" />
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_aluno}" for="aluno" />
+                    <p:inputText id="aluno" value="#{trabalhoacademicoController.selected.aluno}" title="#{bundle.CreateTrabalhoacademicoTitle_aluno}" />
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_curso}" for="curso" />
+                    <p:inputText id="curso" value="#{trabalhoacademicoController.selected.curso}" title="#{bundle.CreateTrabalhoacademicoTitle_curso}" />
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_folhas}" for="folhas" />
+                    <p:inputText id="folhas" value="#{trabalhoacademicoController.selected.folhas}" title="#{bundle.CreateTrabalhoacademicoTitle_folhas}" />
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_idInst}" for="idInst" />
+                    <p:selectOneMenu id="idInst" value="#{trabalhoacademicoController.selected.idInst}">
+                        <f:selectItems value="#{instituicaoacademicaController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTrabalhoacademicoLabel_idAcervo}" for="idAcervo" />
+                    <p:selectOneMenu id="idAcervo" value="#{trabalhoacademicoController.selected.idAcervo}">
+                        <f:selectItems value="#{acervoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <p:commandButton ajax="false" action="#{trabalhoacademicoController.create}" value="#{bundle.CreateTrabalhoacademicoSaveLink}" />
+                <br />
+                <br />
+                <p:commandButton ajax="false" action="#{trabalhoacademicoController.prepareList}" value="#{bundle.CreateTrabalhoacademicoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTrabalhoacademicoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

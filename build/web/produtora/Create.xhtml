@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProdutoraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{produtoraController.prepareCreate}"/>  
+
+                        <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{produtoraController.prepareEdit}"/> 
+
+                        <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{produtoraController.destroy}"/>
+
+                        <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{produtoraController.prepareView}"/>  
+
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form>
+            <h:form>
+                <p:panel header="Cadastrar Nova Produtora">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateProdutoraLabel_idProdutora}" for="idProdutora" />
+                        <p:inputText id="idProdutora" value="#{produtoraController.selected.idProdutora}" title="#{bundle.CreateProdutoraTitle_idProdutora}" required="true" requiredMessage="#{bundle.CreateProdutoraRequiredMessage_idProdutora}"/>
+                        <h:outputLabel value="#{bundle.CreateProdutoraLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{produtoraController.selected.nome}" title="#{bundle.CreateProdutoraTitle_nome}" />
+                        <h:outputLabel value="#{bundle.CreateProdutoraLabel_idContato}" for="idContato" />
+                        <p:selectOneMenu id="idContato" value="#{produtoraController.selected.idContato}" >
+                            <f:selectItems value="#{contatoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{produtoraController.create}" value="#{bundle.CreateProdutoraSaveLink}" />
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{produtoraController.prepareList}" value="#{bundle.CreateProdutoraShowAllLink}" immediate="true"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.CreateProdutoraIndexLink}"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

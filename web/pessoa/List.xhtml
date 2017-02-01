@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPessoaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{pessoaController.prepareCreate}"/>  
+
+                        <p:commandButton value="Editar" icon="ui-icon-pencil" action="#{pessoaController.prepareEdit}"/> 
+
+                        <p:commandButton value="Remover" icon="ui-icon-close" action="#{pessoaController.destroy}"/>
+
+                        <p:commandButton value="Visualizar" icon="ui-icon-info" action="#{pessoaController.prepareView}"/>  
+
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form> 
+            <h:form id="form">
+                <h:outputText escape="false" value="#{bundle.ListPessoaEmpty}" rendered="#{pessoaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pessoaController.items.rowCount > 0}">
+                    <p:commandButton ajax="false" action="#{pessoaController.previous}" value="#{bundle.Previous} #{pessoaController.pagination.pageSize}" rendered="#{pessoaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <p:commandButton ajax="false" action="#{pessoaController.next}" value="#{bundle.Next} #{pessoaController.pagination.pageSize}" rendered="#{pessoaController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{pessoaController.items}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_idPessoa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPessoa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_nome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_sexo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sexo}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_rua}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rua}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_numero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numero}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_bairro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bairro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_cep}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cep}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_complemento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.complemento}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_pastoral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pastoral}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_senha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.senha}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_logon}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logon}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_datanascimento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datanascimento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_idContato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContato}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPessoaTitle_idCidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCidade}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandButton  action="#{pessoaController.prepareView}" value="#{bundle.ListPessoaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton  action="#{pessoaController.prepareEdit}" value="#{bundle.ListPessoaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandButton action="#{pessoaController.destroy}" value="#{bundle.ListPessoaDestroyLink}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <br />
+                <p:commandButton ajax="false" action="#{pessoaController.prepareCreate}" value="#{bundle.ListPessoaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPessoaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

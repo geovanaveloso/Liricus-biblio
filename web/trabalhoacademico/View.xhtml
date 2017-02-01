@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTrabalhoacademicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_idTrab}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.idTrab}" title="#{bundle.ViewTrabalhoacademicoTitle_idTrab}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_orientador}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.orientador}" title="#{bundle.ViewTrabalhoacademicoTitle_orientador}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_aluno}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.aluno}" title="#{bundle.ViewTrabalhoacademicoTitle_aluno}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_curso}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.curso}" title="#{bundle.ViewTrabalhoacademicoTitle_curso}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_folhas}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.folhas}" title="#{bundle.ViewTrabalhoacademicoTitle_folhas}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_idInst}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.idInst}" title="#{bundle.ViewTrabalhoacademicoTitle_idInst}"/>
+                    <h:outputText value="#{bundle.ViewTrabalhoacademicoLabel_idAcervo}"/>
+                    <h:outputText value="#{trabalhoacademicoController.selected.idAcervo}" title="#{bundle.ViewTrabalhoacademicoTitle_idAcervo}"/>
+                </h:panelGrid>
+                <br />
+                <p:commandButton ajax="false" action="#{trabalhoacademicoController.destroyAndView}" value="#{bundle.ViewTrabalhoacademicoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTrabalhoacademicoEditLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{trabalhoacademicoController.prepareCreate}" value="#{bundle.ViewTrabalhoacademicoCreateLink}" />
+                <br />
+                <p:commandButton ajax="false" action="#{trabalhoacademicoController.prepareList}" value="#{bundle.ViewTrabalhoacademicoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTrabalhoacademicoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

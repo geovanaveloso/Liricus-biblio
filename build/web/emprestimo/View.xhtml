@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEmprestimoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_idEmprestimo}"/>
+                    <h:outputText value="#{emprestimoController.selected.idEmprestimo}" title="#{bundle.ViewEmprestimoTitle_idEmprestimo}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_renovacao}"/>
+                    <h:outputText value="#{emprestimoController.selected.renovacao}" title="#{bundle.ViewEmprestimoTitle_renovacao}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_dataEmprestimo}"/>
+                    <h:outputText value="#{emprestimoController.selected.dataEmprestimo}" title="#{bundle.ViewEmprestimoTitle_dataEmprestimo}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_dataDevolucao}"/>
+                    <h:outputText value="#{emprestimoController.selected.dataDevolucao}" title="#{bundle.ViewEmprestimoTitle_dataDevolucao}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_devolucaoPrevista}"/>
+                    <h:outputText value="#{emprestimoController.selected.devolucaoPrevista}" title="#{bundle.ViewEmprestimoTitle_devolucaoPrevista}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_idPessoa}"/>
+                    <h:outputText value="#{emprestimoController.selected.idPessoa}" title="#{bundle.ViewEmprestimoTitle_idPessoa}"/>
+                    <h:outputText value="#{bundle.ViewEmprestimoLabel_idAcervo}"/>
+                    <h:outputText value="#{emprestimoController.selected.idAcervo}" title="#{bundle.ViewEmprestimoTitle_idAcervo}"/>
+                </h:panelGrid>
+                <br />
+                <p:commandButton ajax="false" action="#{emprestimoController.destroyAndView}" value="#{bundle.ViewEmprestimoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEmprestimoEditLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{emprestimoController.prepareCreate}" value="#{bundle.ViewEmprestimoCreateLink}" />
+                <br />
+                <p:commandButton ajax="false" action="#{emprestimoController.prepareList}" value="#{bundle.ViewEmprestimoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEmprestimoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

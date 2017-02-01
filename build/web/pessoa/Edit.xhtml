@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPessoaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_idPessoa}" for="idPessoa" />
+                    <p:inputText id="idPessoa" value="#{pessoaController.selected.idPessoa}" title="#{bundle.EditPessoaTitle_idPessoa}" required="true" requiredMessage="#{bundle.EditPessoaRequiredMessage_idPessoa}"/>
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_nome}" for="nome" />
+                    <p:inputText id="nome" value="#{pessoaController.selected.nome}" title="#{bundle.EditPessoaTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_sexo}" for="sexo" />
+                    <p:inputText id="sexo" value="#{pessoaController.selected.sexo}" title="#{bundle.EditPessoaTitle_sexo}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_rua}" for="rua" />
+                    <p:inputText id="rua" value="#{pessoaController.selected.rua}" title="#{bundle.EditPessoaTitle_rua}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_numero}" for="numero" />
+                    <p:inputText id="numero" value="#{pessoaController.selected.numero}" title="#{bundle.EditPessoaTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_bairro}" for="bairro" />
+                    <p:inputText id="bairro" value="#{pessoaController.selected.bairro}" title="#{bundle.EditPessoaTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_cep}" for="cep" />
+                    <p:inputText id="cep" value="#{pessoaController.selected.cep}" title="#{bundle.EditPessoaTitle_cep}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_complemento}" for="complemento" />
+                    <p:inputText id="complemento" value="#{pessoaController.selected.complemento}" title="#{bundle.EditPessoaTitle_complemento}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_hierarquia}" for="hierarquia" />
+                    <p:inputText id="hierarquia" value="#{pessoaController.selected.hierarquia}" title="#{bundle.EditPessoaTitle_hierarquia}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_pastoral}" for="pastoral" />
+                    <p:inputText id="pastoral" value="#{pessoaController.selected.pastoral}" title="#{bundle.EditPessoaTitle_pastoral}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_senha}" for="senha" />
+                    <p:inputText id="senha" value="#{pessoaController.selected.senha}" title="#{bundle.EditPessoaTitle_senha}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_logon}" for="logon" />
+                    <p:inputText id="logon" value="#{pessoaController.selected.logon}" title="#{bundle.EditPessoaTitle_logon}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_datanascimento}" for="datanascimento" />
+                    <p:inputText id="datanascimento" value="#{pessoaController.selected.datanascimento}" title="#{bundle.EditPessoaTitle_datanascimento}" />
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_idContato}" for="idContato" />
+                    <p:selectOneMenu id="idContato" value="#{pessoaController.selected.idContato}">
+                        <f:selectItems value="#{contatoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPessoaLabel_idCidade}" for="idCidade" />
+                    <p:selectOneMenu id="idCidade" value="#{pessoaController.selected.idCidade}">
+                        <f:selectItems value="#{cidadeController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{pessoaController.update}" value="#{bundle.EditPessoaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPessoaViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{pessoaController.prepareList}" value="#{bundle.EditPessoaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPessoaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTelefoneTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{telefoneController.prepareCreate}"/>  
+
+                        <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{telefoneController.prepareEdit}"/> 
+
+                        <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{telefoneController.destroy}"/>
+
+                        <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{telefoneController.prepareView}"/>  
+
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTelefoneLabel_idTelefone}" for="idTelefone" />
+                    <p:inputText id="idTelefone" value="#{telefoneController.selected.idTelefone}" title="#{bundle.CreateTelefoneTitle_idTelefone}" required="true" requiredMessage="#{bundle.CreateTelefoneRequiredMessage_idTelefone}"/>
+                    <h:outputLabel value="#{bundle.CreateTelefoneLabel_ddd}" for="ddd" />
+                    <p:inputText id="ddd" value="#{telefoneController.selected.ddd}" title="#{bundle.CreateTelefoneTitle_ddd}" />
+                    <h:outputLabel value="#{bundle.CreateTelefoneLabel_numero}" for="numero" />
+                    <p:inputText id="numero" value="#{telefoneController.selected.numero}" title="#{bundle.CreateTelefoneTitle_numero}" />
+                    <h:outputLabel value="#{bundle.CreateTelefoneLabel_idContato}" for="idContato" />
+                    <p:selectOneMenu id="idContato" value="#{telefoneController.selected.idContato}">
+                        <f:selectItems value="#{contatoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <p:commandButton ajax="false" action="#{telefoneController.create}" value="#{bundle.CreateTelefoneSaveLink}" />
+                <br />
+                <br />
+                <p:commandButton ajax="false" action="#{telefoneController.prepareList}" value="#{bundle.CreateTelefoneShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTelefoneIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

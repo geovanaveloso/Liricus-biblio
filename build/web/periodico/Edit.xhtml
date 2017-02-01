@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPeriodicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_idPeriodico}" for="idPeriodico" />
+                    <p:inputText id="idPeriodico" value="#{periodicoController.selected.idPeriodico}" title="#{bundle.EditPeriodicoTitle_idPeriodico}" required="true" requiredMessage="#{bundle.EditPeriodicoRequiredMessage_idPeriodico}"/>
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_folhas}" for="folhas" />
+                    <p:inputText id="folhas" value="#{periodicoController.selected.folhas}" title="#{bundle.EditPeriodicoTitle_folhas}" />
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_periodicidade}" for="periodicidade" />
+                    <p:inputText id="periodicidade" value="#{periodicoController.selected.periodicidade}" title="#{bundle.EditPeriodicoTitle_periodicidade}" />
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_dataPublicacao}" for="dataPublicacao" />
+                    <p:inputText id="dataPublicacao" value="#{periodicoController.selected.dataPublicacao}" title="#{bundle.EditPeriodicoTitle_dataPublicacao}" />
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_edicao}" for="edicao" />
+                    <p:inputText id="edicao" value="#{periodicoController.selected.edicao}" title="#{bundle.EditPeriodicoTitle_edicao}" />
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_idEditora}" for="idEditora" />
+                    <p:selectOneMenu id="idEditora" value="#{periodicoController.selected.idEditora}" >
+                        <f:selectItems value="#{editoraController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPeriodicoLabel_idAcervo}" for="idAcervo" />
+                    <p:selectOneMenu id="idAcervo" value="#{periodicoController.selected.idAcervo}">
+                        <f:selectItems value="#{acervoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{periodicoController.update}" value="#{bundle.EditPeriodicoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPeriodicoViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{periodicoController.prepareList}" value="#{bundle.EditPeriodicoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPeriodicoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

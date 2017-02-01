@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLivroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>  
+
+                <p:growl id="messages" />  
+
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton ajax="false" value="Novo" icon="ui-icon-document" action="#{livroController.prepareCreate}"/>  
+
+                        <p:commandButton ajax="false" value="Editar" icon="ui-icon-pencil" action="#{livroController.prepareEdit}"/> 
+
+                        <p:commandButton ajax="false" value="Remover" icon="ui-icon-close" action="#{livroController.destroy}"/>
+
+                        <p:commandButton ajax="false" value="Visualizar" icon="ui-icon-info" action="#{livroController.prepareView}"/>  
+
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:menuButton value="Ordenar Por:">  
+                            <p:menuitem value="Id"  />  
+                            <p:menuitem value="Nome"  
+                                        />  
+                            <p:menuitem value="Data"  
+                                        />  
+                        </p:menuButton>  
+                    </p:toolbarGroup>  
+
+                </p:toolbar>  
+            </h:form>
+            <h:form>
+                <p:panel header="Cadastrar Novo Livro">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_volume}" for="volume" />
+                        <p:inputText id="volume" value="#{livroController.selected.volume}" title="#{bundle.CreateLivroTitle_volume}" />
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_edicao}" for="edicao" />
+                        <p:inputText id="edicao" value="#{livroController.selected.edicao}" title="#{bundle.CreateLivroTitle_edicao}" />
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_paginas}" for="paginas" />
+                        <p:inputText id="paginas" value="#{livroController.selected.paginas}" title="#{bundle.CreateLivroTitle_paginas}" />
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_idEditora}" for="idEditora" />
+                        <p:selectOneMenu id="idEditora" value="#{livroController.selected.idEditora}" >
+                            <f:selectItems value="#{editoraController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_idAutor}" for="idAutor" />
+                        <p:selectOneMenu id="idAutor" value="#{livroController.selected.idAutor}"  >
+                            <f:selectItems value="#{autorController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateLivroLabel_idAcervo}" for="idAcervo" />
+                        <p:selectOneMenu id="idAcervo" value="#{livroController.selected.idAcervo}"  >
+                            <f:selectItems value="#{acervoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{livroController.create}" value="#{bundle.CreateLivroSaveLink}" />
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{livroController.prepareList}" value="#{bundle.CreateLivroShowAllLink}" immediate="true"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.CreateLivroIndexLink}"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

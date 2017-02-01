@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMidiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_idMidia}" for="idMidia" />
+                    <p:inputText id="idMidia" value="#{midiaController.selected.idMidia}" title="#{bundle.EditMidiaTitle_idMidia}" required="true" requiredMessage="#{bundle.EditMidiaRequiredMessage_idMidia}"/>
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_duracao}" for="duracao" />
+                    <p:inputText id="duracao" value="#{midiaController.selected.duracao}" title="#{bundle.EditMidiaTitle_duracao}" />
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_atores}" for="atores" />
+                    <p:inputText id="atores" value="#{midiaController.selected.atores}" title="#{bundle.EditMidiaTitle_atores}" />
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_diretor}" for="diretor" />
+                    <p:inputText id="diretor" value="#{midiaController.selected.diretor}" title="#{bundle.EditMidiaTitle_diretor}" />
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_idProd}" for="idProd" />
+                    <p:selectOneMenu id="idProd" value="#{midiaController.selected.idProd}">
+                        <f:selectItems value="#{produtoraController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMidiaLabel_idAcervo}" for="idAcervo" />
+                    <p:selectOneMenu id="idAcervo" value="#{midiaController.selected.idAcervo}">
+                        <f:selectItems value="#{acervoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton ajax="false" action="#{midiaController.update}" value="#{bundle.EditMidiaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMidiaViewLink}"/>
+                <br />
+                <p:commandButton ajax="false" action="#{midiaController.prepareList}" value="#{bundle.EditMidiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMidiaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
